@@ -1,0 +1,85 @@
+/* Couleurs vives et style pop-art */
+body {
+    font-family: 'Arial', sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #fff;
+    color: #333;
+}
+
+header {
+    background-color: #ff5733; /* Rouge vif */
+    color: #fff;
+    padding: 20px;
+    text-align: center;
+}
+
+h1 {
+    font-size: 3rem;
+    font-weight: bold;
+}
+
+.content {
+    display: flex;
+    justify-content: space-between;
+    padding: 20px;
+}
+
+.comic img {
+    width: 300px; /* Adaptable à la taille de la BD */
+    margin: 20px;
+}
+
+.articles ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+.articles li {
+    margin: 10px 0;
+}
+
+footer {
+    background-color: #4CAF50; /* Vert vif */
+    color: white;
+    padding: 20px;
+    text-align: center;
+}
+
+footer form {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 20px;
+    align-items: center;
+}
+
+footer input, footer textarea {
+    padding: 10px;
+    margin: 5px 0;
+    width: 100%;
+    max-width: 400px;
+    box-sizing: border-box;
+}
+
+footer button {
+    background-color: #ff5733;
+    color: white;
+    padding: 10px;
+    border: none;
+    cursor: pointer;
+    width: 150px;
+    margin-top: 10px;
+}
+
+footer button:hover {
+    background-color: #e74c3c;
+}
+
+footer a {
+    color: #fff;
+    text-decoration: none;
+}
+
+footer a:hover {
+    text-decoration: underline;
+}
