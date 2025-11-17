@@ -1,36 +1,345 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     <title>Mon Ideart</title>
     <link rel="stylesheet" href="styles.css">
+    <style>
+        /* Palette pop-art inspirée Warhol */
+        :root{
+            --pop-magenta: #ff2d95;
+            --pop-cyan:    #00d2ff;
+            --pop-yellow:  #ffd800;
+            --pop-orange:  #ff7a00;
+            --pop-blue:    #0066ff; /* bleu pétard */
+            --white:       #ffffff;
+            --black:       #0b0b0b;
+        }
+
+        html,body{
+            height:100%;
+            margin:0;
+            font-family: "Helvetica Neue", Arial, sans-serif;
+            color:var(--black);
+            background:
+                radial-gradient(circle at top left, rgba(0,0,0,0.35) 0 2px, rgba(0,0,0,0.0) 35%),
+                radial-gradient(circle at top right, rgba(0,0,0,0.35) 0 2px, rgba(0,0,0,0.0) 35%),
+                radial-gradient(circle at bottom left, rgba(0,0,0,0.35) 0 2px, rgba(0,0,0,0.0) 35%),
+                radial-gradient(circle at bottom right, rgba(0,0,0,0.35) 0 2px, rgba(0,0,0,0.0) 35%),
+                #fff;
+            background-repeat:no-repeat;
+            background-size: 12% 12%, 12% 12%, 12% 12%, 12% 12%, cover;
+        }
+
+        a{ color:inherit; text-decoration:none; }
+
+        /* ===== Nav bleu pétard mais avec pictos pop-art style thick ===== */
+        nav{
+            background: var(--pop-blue);
+            color:var(--white);
+            padding: 10px 16px;
+            display:flex;
+            justify-content:flex-end;
+            align-items:center;
+            gap:12px;
+            position:sticky;
+            top:0;
+            z-index:40;
+            box-shadow: 0 6px 18px rgba(0,0,0,0.18);
+        }
+        .nav-icons{ display:flex; gap:14px; align-items:center; }
+        .nav-icon{
+            width:48px; height:48px;
+            display:inline-flex; align-items:center; justify-content:center;
+            border-radius:10px;
+            background: linear-gradient(180deg, rgba(255,255,255,0.06), rgba(0,0,0,0.06));
+            box-shadow: 0 4px 8px rgba(0,0,0,0.15);
+            cursor:pointer;
+            border:4px solid rgba(255,255,255,0.06);
+            transition: transform .12s ease;
+        }
+        .nav-icon:active,.nav-icon:hover{ transform: translateY(-3px) scale(1.02); }
+
+        .nav-icon svg{ width:26px; height:26px; fill:var(--white); filter: drop-shadow(0 2px 0 rgba(0,0,0,0.25)); }
+
+        /* ===== Header pop-art : grille Warhol 2x2 + bulle titre pop-art ===== */
+        header#accueil{
+            padding:30px 16px 10px;
+            display:flex;
+            flex-direction:column;
+            align-items:center;
+            gap:18px;
+            text-align:center;
+            position:relative;
+            overflow:visible;
+        }
+
+        /* Warhol grid: 4 déclinaisons de la même image */
+        .warhol-grid{
+            display:grid;
+            grid-template-columns: repeat(2, min(180px, 45vw));
+            gap:10px;
+            transform: translateY(6px);
+        }
+        .warhol-cell{
+            width:100%;
+            aspect-ratio: 1/1;
+            position:relative;
+            overflow:hidden;
+            display:block;
+            border-radius:6px;
+            box-shadow: 0 8px 24px rgba(0,0,0,0.18);
+        }
+        .warhol-cell img{
+            width:110%;
+            height:110%;
+            object-fit:cover;
+            object-position:center;
+            transform: scale(1.04);
+            filter: contrast(1.2) saturate(1.4);
+            display:block;
+        }
+        /* overlays colorés pour chaque case (aplat + mélange écran/multiply pour effet sérigraphie) */
+        .warhol-cell::after{
+            content:"";
+            position:absolute;
+            inset:0;
+            mix-blend-mode:multiply;
+            opacity:0.9;
+        }
+        .cell-1::after{ background: var(--pop-magenta); }
+        .cell-2::after{ background: var(--pop-cyan); }
+        .cell-3::after{ background: var(--pop-yellow); }
+        .cell-4::after{ background: var(--pop-orange); }
+
+        /* Ajout d'une trame demi-teinte (halftone) au-dessus de la grille */
+        .warhol-grid::before{
+            content:"";
+            position:absolute;
+            inset:0;
+            pointer-events:none;
+            background-image:
+                radial-gradient(circle, rgba(255,255,255,0.0) 0 30%, rgba(0,0,0,0.12) 31% 32%),
+                radial-gradient(circle, rgba(255,255,255,0.0) 0 30%, rgba(0,0,0,0.08) 31% 32%);
+            background-size: 10px 10px, 20px 20px;
+            mix-blend-mode: overlay;
+            opacity:0.65;
+            transform: scale(1.2);
+            z-index:2;
+        }
+
+        /* Bubble title: grosse typo heavy, contour blanc (style sérigraphie) */
+        .bubble{
+            display:inline-block;
+            margin-top:-36px; /* remonte la bulle pour chevaucher la grille */
+            padding:18px 28px;
+            border-radius:40px;
+            background: linear-gradient(180deg, rgba(255,255,255,0.08), rgba(255,255,255,0.02));
+            position:relative;
+            z-index:6;
+            box-shadow: 0 18px 40px rgba(0,0,0,0.22);
+        }
+        .bubble h1{
+            margin:0;
+            font-family: "Impact","Anton", "Arial Black", sans-serif;
+            font-size:54px;
+            line-height:1;
+            color: var(--pop-yellow);
+            -webkit-text-stroke: 6px var(--white); /* effet surlignage blanc épais */
+            text-transform:uppercase;
+            letter-spacing:1px;
+            display:inline-block;
+        }
+        .bubble p{
+            margin:8px 0 0 0;
+            font-weight:800;
+            color:var(--pop-blue);
+            letter-spacing:0.6px;
+            text-transform:uppercase;
+            font-size:12px;
+        }
+
+        /* small decoration: thick black stroke below the bubble (pop art shadow) */
+        .bubble::after{
+            content:"";
+            position:absolute;
+            left:50%;
+            transform:translateX(-50%);
+            bottom:-10px;
+            width:60%;
+            height:12px;
+            background:linear-gradient(90deg, rgba(0,0,0,0.8), rgba(0,0,0,0.6));
+            filter: blur(3px);
+            border-radius:6px;
+            z-index:-1;
+            opacity:0.85;
+        }
+
+        /* Intro section: titre bleu, image au-dessus et cadre pop-art */
+        .intro{
+            padding:28px 18px;
+            max-width:960px;
+            margin: 8px auto 34px auto;
+            text-align:center;
+        }
+        .intro h2{
+            color:var(--pop-blue);
+            font-size:30px;
+            margin:8px 0 18px 0;
+            font-weight:900;
+            letter-spacing:0.6px;
+            text-transform:uppercase;
+        }
+        .intro .lead-image{
+            max-width:700px;
+            width:92%;
+            margin:0 auto 16px auto;
+            display:block;
+            border-radius:6px;
+            box-shadow: 0 10px 34px rgba(0,0,0,0.14);
+            border:12px solid var(--pop-yellow); /* cadre pop-art */
+        }
+        .intro p{
+            max-width:820px;
+            margin:0 auto;
+            font-size:1.05rem;
+            line-height:1.6;
+            padding:0 6px;
+        }
+
+        /* Articles remain readable but with subtle pop accents */
+        section{ padding:18px; max-width:980px; margin: 16px auto; }
+
+        /* Contact form: fond bleu pétard avec encadrement pop art (traits épais) */
+        footer#contact{
+            background: var(--pop-blue);
+            color:var(--white);
+            padding:28px 20px;
+            border-top-left-radius:6px;
+            border-top-right-radius:6px;
+            margin-top:30px;
+            box-shadow: 0 -6px 30px rgba(0,0,0,0.18);
+            position:relative;
+            overflow:hidden;
+        }
+        /* trame halftone légère en fond du footer */
+        footer#contact::after{
+            content:"";
+            position:absolute;
+            inset:0;
+            background-image: radial-gradient(circle, rgba(0,0,0,0.08) 0 1px, transparent 2px);
+            background-size: 8px 8px;
+            opacity:0.35;
+            pointer-events:none;
+        }
+
+        footer#contact h3{
+            margin:0 0 6px 0;
+            font-size:22px;
+            font-weight:900;
+            text-transform:uppercase;
+            color:var(--pop-yellow);
+            -webkit-text-stroke:1px rgba(0,0,0,0.25);
+        }
+        .contact-intro{ font-size:1.02rem; margin-bottom:12px; opacity:0.95; }
+
+        #contact-form{
+            display:flex;
+            flex-direction:column;
+            gap:10px;
+            max-width:720px;
+            margin-top:10px;
+            position:relative;
+            z-index:4;
+        }
+        #contact-form input,#contact-form textarea{
+            padding:12px 14px;
+            border-radius:8px;
+            border:4px solid rgba(255,255,255,0.12);
+            outline:none;
+            font-size:1rem;
+            background: rgba(255,255,255,0.06);
+            color:var(--white);
+        }
+        #contact-form input::placeholder,#contact-form textarea::placeholder{ color:rgba(255,255,255,0.8); }
+        #contact-form button{
+            background: var(--pop-magenta);
+            color:var(--white);
+            padding:12px 16px;
+            border-radius:10px;
+            border:none;
+            font-weight:900;
+            cursor:pointer;
+            text-transform:uppercase;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.28);
+        }
+        #contact-form button:hover{ transform: translateY(-3px); }
+
+        @media (max-width:720px){
+            .bubble h1{ font-size:36px; -webkit-text-stroke:4px var(--white); }
+            .warhol-grid{ grid-template-columns: repeat(2, 44vw); gap:8px; }
+            .nav-icon{ width:44px;height:44px; }
+        }
+
+    </style>
 </head>
 <body>
-    <!-- Bandeau de navigation -->
-    <nav>
-        <ul>
-            <li><a href="#accueil">Accueil</a></li>
-            <li><a href="#articles">Articles</a></li>
-            <li><a href="#contact">Contact</a></li>
-        </ul>
+    <!-- Nav -->
+    <nav aria-label="Barre de navigation">
+        <div style="flex:1"></div>
+        <div class="nav-icons" role="navigation" aria-hidden="false">
+            <a class="nav-icon" href="#accueil" title="Accueil" aria-label="Accueil">
+                <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3l9 8h-3v8h-12v-8h-3l9-8zM10 17h4v-5h-4v5z"/></svg>
+            </a>
+            <a class="nav-icon" href="#articles" title="Articles" aria-label="Articles">
+                <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M14 2H6c-1.1 0-2 .9-2 2v16c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2V8l-6-6zM13 3.5L18.5 9H13V3.5zM8 17h8v1H8v-1zm0-3h8v1H8v-1z"/></svg>
+            </a>
+            <a class="nav-icon" href="#contact" title="Contact" aria-label="Contact">
+                <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6.6 10.8c1.4 2.8 3.6 5 6.4 6.4l1.9-1.9c.2-.2.5-.3.8-.2 1 .3 2 .5 3 .5.6 0 1 .4 1 1v3c0 .6-.4 1-1 1C10.5 20.5 3.5 13.5 2 3c0 0 1 0 1 0 0 .9.2 1.9.6 2.8.1.3 0 .6-.2.8L6.6 10.8z"/></svg>
+            </a>
+        </div>
     </nav>
 
-    <!-- Page d'accueil -->
-    <header id="accueil">
-        <div class="title">
-            <h1>Mon Ideart</h1>
-            <p>Libère ta créativité !</p>
+    <!-- Accueil: grille Warhol + bulle titre -->
+    <header id="accueil" tabindex="-1">
+        <div class="warhol-grid" aria-hidden="false" role="img" aria-label="Grille pop-art">
+            <!-- Remplace URL_WARHOL_IMG par ton image principale (portrait ou illustration) -->
+            <a class="warhol-cell cell-1" href="#accueil" title="Variation 1">
+                <img src="URL_WARHOL_IMG" alt="Illustration pop art 1">
+            </a>
+            <a class="warhol-cell cell-2" href="#accueil" title="Variation 2">
+                <img src="URL_WARHOL_IMG" alt="Illustration pop art 2">
+            </a>
+            <a class="warhol-cell cell-3" href="#accueil" title="Variation 3">
+                <img src="URL_WARHOL_IMG" alt="Illustration pop art 3">
+            </a>
+            <a class="warhol-cell cell-4" href="#accueil" title="Variation 4">
+                <img src="URL_WARHOL_IMG" alt="Illustration pop art 4">
+            </a>
         </div>
-        <div class="comic">
-            <!-- Placeholder pour la BD inspirante -->
-            <img src="URL_DE_LA_BD" alt="BD inspirante" />
+
+        <div class="bubble" role="banner" aria-labelledby="site-title">
+            <h1 id="site-title">Mon Ideart</h1>
+            <p>Libère ta créativité !</p>
         </div>
     </header>
 
+    <!-- Intro Qu'est-ce-c'est ? -->
+    <section class="intro" aria-labelledby="quest-title">
+        <h2 id="quest-title">Qu'est‑ce‑c'est ?</h2>
+
+        <!-- image au-dessus du texte, entourée d'un cadre jaune (pop-art) -->
+        <img class="lead-image" src="URL_IMAGE_INTRO" alt="Illustration Mon Ideart">
+
+        <p>
+            Dans ce site vous trouverez des articles et des liens vers des vidéos pour vous aider quand vous avez le syndrome de la page blanche.
+        </p>
+    </section>
+
     <!-- Sommaire des articles -->
-    <section id="articles">
-        <h2>Nos Articles</h2>
+    <section id="articles" aria-labelledby="articles-title">
+        <h2 id="articles-title">Nos Articles</h2>
         <ul>
             <li><a href="#libere-creatif">Libère ton Créatif Intérieur</a></li>
             <li><a href="#creativite-sans-limites">La Créativité Sans Limites</a></li>
@@ -40,83 +349,69 @@
     <!-- Article 1 -->
     <section id="libere-creatif">
         <h3>Libère ton Créatif Intérieur</h3>
-        <p>
-            Tu veux booster ta créativité et explorer de nouvelles façons de t’exprimer artistiquement ? Oublie la routine et ose t’aventurer sur des sentiers imprévus. Ces exercices ludiques sont là pour te secouer un peu et t'ouvrir à un monde de possibilités infinies !
-        </p>
+        <p>Tu veux booster ta créativité et explorer de nouvelles façons de t’exprimer artistiquement ? Oublie la routine et ose t’aventurer sur des sentiers imprévus. Ces exercices ludiques [...]</p>
         <ol>
-            <li>
-                <strong>Dessiner sans regarder 🖊️👀</strong><br>
-                Ferme les yeux ou fixe un point au loin, et dessine sans regarder ce que tu fais. Tu découvriras des formes inopinées et peut-être même un talent caché pour les dessins abstraits !
-            </li>
-            <li>
-                <strong>Taches et formes aléatoires 🌈🌀</strong><br>
-                Fais des taches de peinture ou des formes abstraites sans but précis. Puis, laisse ton imagination faire le reste en transformant ces taches en une composition créative et surprenante.
-            </li>
-            <li>
-                <strong>Collage expressif ✂️🖼️</strong><br>
-                Découpe des morceaux d’images, de papiers colorés et assemble-les sans plan préétabli. L’important ici, c’est de laisser libre cours à ton inspiration sans te soucier du résultat final.
-            </li>
-            <li>
-                <strong>Dessin avec l’autre main ✋✏️</strong><br>
-                Si tu es droitier, prends ton crayon avec la main gauche et inversement ! Cet exercice va t’entraîner à voir ton dessin sous un autre angle et à libérer ta créativité de manière surprenante.
-            </li>
-            <li>
-                <strong>Peindre en musique 🎶🎨</strong><br>
-                Lance ta playlist préférée et laisse la musique guider tes coups de pinceau. C’est un exercice qui unit le son et la couleur, et qui peut t’offrir des résultats aussi harmonieux qu’imprévisibles.
-            </li>
-            <li>
-                <strong>Dessin aveugle contourné 🖋️🔲</strong><br>
-                Inspire-toi d’un objet et dessine ses contours sans regarder ton papier. Cet exercice permet d’affiner ta perception et d’explorer la relation entre l’observation et le dessin.
-            </li>
-            <li>
-                <strong>Contrainte des 5 couleurs 🎨✨</strong><br>
-                Limite-toi à cinq couleurs seulement et crée ton œuvre. Cette contrainte va t’aider à travailler ta palette de manière plus harmonieuse, tout en te poussant à utiliser les couleurs de façon plus créative.
-            </li>
+            <li><strong>Dessiner sans regarder 🖊️👀</strong><br>Ferme les yeux ou fixe un point au loin, et dessine sans regarder ce que tu fais. [...]</li>
+            <li><strong>Taches et formes aléatoires 🌈🌀</strong><br>Fais des taches de peinture ou des formes abstraites sans but précis. [...]</li>
+            <li><strong>Collage expressif ✂️🖼️</strong><br>Découpe des morceaux d’images, de papiers colorés et assemble-les sans plan préétabli. [...]</li>
+            <li><strong>Dessin avec l’autre main ✋✏️</strong><br>Si tu es droitier, prends ton crayon avec la main gauche et inversement ! [...]</li>
+            <li><strong>Peindre en musique 🎶🎨</strong><br>Lance ta playlist préférée et laisse la musique guider tes coups de pinceau. [...]</li>
+            <li><strong>Dessin aveugle contourné 🖋️🔲</strong><br>Inspire-toi d’un objet et dessine ses contours sans regarder ton papier. [...]</li>
+            <li><strong>Contrainte des 5 couleurs 🎨✨</strong><br>Limite-toi à cinq couleurs seulement et crée ton œuvre. [...]</li>
         </ol>
     </section>
 
     <!-- Article 2 -->
     <section id="creativite-sans-limites">
         <h3>La Créativité Sans Limites</h3>
-        <p>
-            Si tu es prêt à repousser encore plus loin les frontières de ta créativité, voici des exercices qui vont te faire sortir de ta zone de confort tout en éclatant de rire ! Ça va secouer ton esprit et faire naître des œuvres totalement imprévisibles.
-        </p>
+        <p>Si tu es prêt à repousser encore plus loin les frontières de ta créativité, voici des exercices qui vont te faire sortir de ta zone de confort tout en éclatant de rire ! [...]</p>
         <ol>
-            <li>
-                <strong>Tirage au sort : Thème + Couleur + Technique 🎰🎨🎲</strong><br>
-                Choisis des thèmes, des couleurs et des techniques, puis tire-les au sort. Pas de répit, pas de plan : seulement le hasard ! Tu vas réaliser une œuvre à partir de ce cocktail détonnant. Parfois génial, parfois un peu catastrophe… mais toujours surprenant !
-            </li>
-            <li>
-                <strong>Cadavre exquis visuel 🧟‍♂️✂️</strong><br>
-                Dessinons ensemble, mais de manière un peu étrange : chacun ajoute une partie à une œuvre sans savoir ce que les autres ont fait. Le résultat ? Un cadavre exquis artistique où les éléments visuels s’assemblent de façon totalement décalée.
-            </li>
-            <li>
-                <strong>Roulette des matériaux 🎡🖌️</strong><br>
-                Fais tourner ta roulette (virtuelle ou pas !) et laisse-toi surprendre par le matériau qui sort. Carton, coquilles d’œufs, poussière de licorne… Peu importe, l'important est d’être créatif avec ce que tu as sous la main !
-            </li>
-            <li>
-                <strong>1 mot, 10 interprétations 🧠💬</strong><br>
-                Choisis un mot au hasard et exprime-le de 10 façons différentes. Le défi ici, c’est de laisser libre cours à ton imagination, en transformant ce mot en œuvres visuelles, écrites ou sonores… L’originalité avant tout !
-            </li>
-            <li>
-                <strong>Peinture à l’aveugle guidée par le toucher 🎨👂</strong><br>
-                Ferme les yeux, plonge tes doigts dans la peinture et laisse-les guider le pinceau. La sensation du toucher devient ton seul guide pour créer une œuvre tactile et totalement inédite. C’est un exercice sensoriel qui ouvre des portes inattendues !
-            </li>
+            <li><strong>Tirage au sort : Thème + Couleur + Technique 🎰🎨🎲</strong><br>Choisis des thèmes, des couleurs et des techniques, puis tire-les au sort. [...]</li>
+            <li><strong>Cadavre exquis visuel 🧟‍♂️✂️</strong><br>Dessinons ensemble, mais de manière un peu étrange : chacun ajoute une partie à une œuvre sans savoir ce que les autres ont fait. [...]</li>
+            <li><strong>Roulette des matériaux 🎡🖌️</strong><br>Fais tourner ta roulette (virtuelle ou pas !) et laisse-toi surprendre par le matériau qui sort. [...]</li>
+            <li><strong>1 mot, 10 interprétations 🧠💬</strong><br>Choisis un mot au hasard et exprime-le de 10 façons différentes. [...]</li>
+            <li><strong>Peinture à l’aveugle guidée par le toucher 🎨👂</strong><br>Ferme les yeux, plonge tes doigts dans la peinture et laisse-les guider le pinceau. [...]</li>
         </ol>
     </section>
 
     <!-- Contact -->
     <footer id="contact">
-        <h3>Contact</h3>
-        <form id="contact-form">
+        <h3>Donne nous ton avis, partage tes idées.</h3>
+        <p class="contact-intro">Nous avons hâte de connaître ton point de vue — idées, suggestions, envies d'articles ou demandes spéciales.</p>
+
+        <form id="contact-form" aria-label="Formulaire de contact">
             <input type="text" name="name" placeholder="Ton nom" required>
             <input type="email" name="email" placeholder="Ton email" required>
-            <textarea name="message" placeholder="Ton message" required></textarea>
+            <textarea name="message" placeholder="Ton message" required rows="5"></textarea>
             <button type="submit">Envoyer</button>
         </form>
-        <p>Email : <a href="mailto:monideart@gmail.com">monideart@gmail.com</a></p>
+        <p style="margin-top:12px; opacity:0.95;">Email : <a style="color:rgba(255,255,255,0.95);" href="mailto:monideart@gmail.com">monideart@gmail.com</a></p>
     </footer>
 
-    <script src="script.js"></script>
+    <script>
+        // Smooth scrolling + simple contact form simulation
+        (function(){
+            const links = document.querySelectorAll('a[href^="#"]');
+            links.forEach(a=>{
+                a.addEventListener('click', function(e){
+                    const targetId = this.getAttribute('href').slice(1);
+                    const target = document.getElementById(targetId);
+                    if(target){
+                        e.preventDefault();
+                        target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                        target.setAttribute('tabindex','-1');
+                        target.focus({preventScroll:true});
+                    }
+                });
+            });
+
+            const form = document.getElementById('contact-form');
+            form.addEventListener('submit', function(e){
+                e.preventDefault();
+                alert("Merci ! Le formulaire a été soumis (simulation).");
+                form.reset();
+            });
+        })();
+    </script>
 </body>
 </html>
