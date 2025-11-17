@@ -4,8 +4,8 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     <title>Mon Ideart</title>
-    <link rel="stylesheet" href="styles.css">
     <style>
+
         /* Palette pop-art inspirée Warhol */
         :root{
             --pop-magenta: #ff2d95;
@@ -34,9 +34,9 @@
 
         a{ color:inherit; text-decoration:none; }
 
-        /* ===== Nav bleu pétard mais avec pictos pop-art style thick ===== */
+        /* ===== Nav cyan avec pictos ronds ===== */
         nav{
-            background: var(--pop-blue);
+            background: var(--pop-cyan);
             color:var(--white);
             padding: 10px 16px;
             display:flex;
@@ -52,14 +52,14 @@
         .nav-icon{
             width:48px; height:48px;
             display:inline-flex; align-items:center; justify-content:center;
-            border-radius:10px;
-            background: linear-gradient(180deg, rgba(255,255,255,0.06), rgba(0,0,0,0.06));
+            border-radius:50%; /* Ronds maintenant */
+            background: linear-gradient(180deg, rgba(255,255,255,0.15), rgba(0,0,0,0.08));
             box-shadow: 0 4px 8px rgba(0,0,0,0.15);
             cursor:pointer;
-            border:4px solid rgba(255,255,255,0.06);
+            border:3px solid rgba(255,255,255,0.2);
             transition: transform .12s ease;
         }
-        .nav-icon:active,.nav-icon:hover{ transform: translateY(-3px) scale(1.02); }
+        .nav-icon:active,.nav-icon:hover{ transform: translateY(-3px) scale(1.05); }
 
         .nav-icon svg{ width:26px; height:26px; fill:var(--white); filter: drop-shadow(0 2px 0 rgba(0,0,0,0.25)); }
 
@@ -81,6 +81,7 @@
             grid-template-columns: repeat(2, min(180px, 45vw));
             gap:10px;
             transform: translateY(6px);
+            position:relative;
         }
         .warhol-cell{
             width:100%;
@@ -210,6 +211,41 @@
 
         /* Articles remain readable but with subtle pop accents */
         section{ padding:18px; max-width:980px; margin: 16px auto; }
+        section h2{
+            color:var(--pop-blue);
+            font-size:28px;
+            font-weight:900;
+            margin-bottom:16px;
+        }
+        section h3{
+            color:var(--pop-magenta);
+            font-size:24px;
+            font-weight:800;
+            margin-top:24px;
+        }
+        section ul{
+            list-style:none;
+            padding:0;
+        }
+        section ul li{
+            padding:8px 0;
+            border-bottom:2px solid rgba(0,0,0,0.08);
+        }
+        section ul li a{
+            color:var(--pop-blue);
+            font-weight:700;
+            transition: color 0.2s;
+        }
+        section ul li a:hover{
+            color:var(--pop-magenta);
+        }
+        section ol{
+            padding-left:24px;
+        }
+        section ol li{
+            margin-bottom:16px;
+            line-height:1.6;
+        }
 
         /* Contact form: fond bleu pétard avec encadrement pop art (traits épais) */
         footer#contact{
@@ -273,6 +309,7 @@
             cursor:pointer;
             text-transform:uppercase;
             box-shadow: 0 8px 20px rgba(0,0,0,0.28);
+            transition: transform 0.2s;
         }
         #contact-form button:hover{ transform: translateY(-3px); }
 
@@ -304,18 +341,18 @@
     <!-- Accueil: grille Warhol + bulle titre -->
     <header id="accueil" tabindex="-1">
         <div class="warhol-grid" aria-hidden="false" role="img" aria-label="Grille pop-art">
-            <!-- Remplace URL_WARHOL_IMG par ton image principale (portrait ou illustration) -->
+            <!-- Image placeholder avec gradient coloré -->
             <a class="warhol-cell cell-1" href="#accueil" title="Variation 1">
-                <img src="URL_WARHOL_IMG" alt="Illustration pop art 1">
+                <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='400' height='400'%3E%3Crect fill='%23ff6b9d' width='400' height='400'/%3E%3Ctext x='50%25' y='50%25' font-size='80' text-anchor='middle' dy='.3em' fill='white' font-family='Arial Black'%3E🎨%3C/text%3E%3C/svg%3E" alt="Illustration pop art 1">
             </a>
             <a class="warhol-cell cell-2" href="#accueil" title="Variation 2">
-                <img src="URL_WARHOL_IMG" alt="Illustration pop art 2">
+                <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='400' height='400'%3E%3Crect fill='%2300d2ff' width='400' height='400'/%3E%3Ctext x='50%25' y='50%25' font-size='80' text-anchor='middle' dy='.3em' fill='white' font-family='Arial Black'%3E🎨%3C/text%3E%3C/svg%3E" alt="Illustration pop art 2">
             </a>
             <a class="warhol-cell cell-3" href="#accueil" title="Variation 3">
-                <img src="URL_WARHOL_IMG" alt="Illustration pop art 3">
+                <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='400' height='400'%3E%3Crect fill='%23ffd800' width='400' height='400'/%3E%3Ctext x='50%25' y='50%25' font-size='80' text-anchor='middle' dy='.3em' fill='white' font-family='Arial Black'%3E🎨%3C/text%3E%3C/svg%3E" alt="Illustration pop art 3">
             </a>
             <a class="warhol-cell cell-4" href="#accueil" title="Variation 4">
-                <img src="URL_WARHOL_IMG" alt="Illustration pop art 4">
+                <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='400' height='400'%3E%3Crect fill='%23ff7a00' width='400' height='400'/%3E%3Ctext x='50%25' y='50%25' font-size='80' text-anchor='middle' dy='.3em' fill='white' font-family='Arial Black'%3E🎨%3C/text%3E%3C/svg%3E" alt="Illustration pop art 4">
             </a>
         </div>
 
@@ -327,51 +364,26 @@
 
     <!-- Intro Qu'est-ce-c'est ? -->
     <section class="intro" aria-labelledby="quest-title">
-        <h2 id="quest-title">Qu'est‑ce‑c'est ?</h2>
+        <h2 id="quest-title">En quoi ce site consiste ?</h2>
 
-        <!-- image au-dessus du texte, entourée d'un cadre jaune (pop-art) -->
-        <img class="lead-image" src="URL_IMAGE_INTRO" alt="Illustration Mon Ideart">
+        <!-- Logo Mon idé'art -->
+        <img class="lead-image" src="https://i.imgur.com/placeholder-logo.jpg" alt="Logo Mon idé'art" style="max-width:400px; border:none; box-shadow:none; background:transparent;">
 
         <p>
             Dans ce site vous trouverez des articles et des liens vers des vidéos pour vous aider quand vous avez le syndrome de la page blanche.
         </p>
+        
+        <!-- BD page blanche -->
+        <img src="https://i.imgur.com/placeholder-bd.jpg" alt="BD syndrome de la page blanche" style="max-width:500px; margin-top:20px; border-radius:8px; box-shadow: 0 8px 20px rgba(0,0,0,0.12);">
     </section>
 
     <!-- Sommaire des articles -->
     <section id="articles" aria-labelledby="articles-title">
         <h2 id="articles-title">Nos Articles</h2>
         <ul>
-            <li><a href="#libere-creatif">Libère ton Créatif Intérieur</a></li>
-            <li><a href="#creativite-sans-limites">La Créativité Sans Limites</a></li>
+            <li><a href="article1.html">Libère ton Créatif Intérieur</a></li>
+            <li><a href="article2.html">La Créativité Sans Limites</a></li>
         </ul>
-    </section>
-
-    <!-- Article 1 -->
-    <section id="libere-creatif">
-        <h3>Libère ton Créatif Intérieur</h3>
-        <p>Tu veux booster ta créativité et explorer de nouvelles façons de t’exprimer artistiquement ? Oublie la routine et ose t’aventurer sur des sentiers imprévus. Ces exercices ludiques [...]</p>
-        <ol>
-            <li><strong>Dessiner sans regarder 🖊️👀</strong><br>Ferme les yeux ou fixe un point au loin, et dessine sans regarder ce que tu fais. [...]</li>
-            <li><strong>Taches et formes aléatoires 🌈🌀</strong><br>Fais des taches de peinture ou des formes abstraites sans but précis. [...]</li>
-            <li><strong>Collage expressif ✂️🖼️</strong><br>Découpe des morceaux d’images, de papiers colorés et assemble-les sans plan préétabli. [...]</li>
-            <li><strong>Dessin avec l’autre main ✋✏️</strong><br>Si tu es droitier, prends ton crayon avec la main gauche et inversement ! [...]</li>
-            <li><strong>Peindre en musique 🎶🎨</strong><br>Lance ta playlist préférée et laisse la musique guider tes coups de pinceau. [...]</li>
-            <li><strong>Dessin aveugle contourné 🖋️🔲</strong><br>Inspire-toi d’un objet et dessine ses contours sans regarder ton papier. [...]</li>
-            <li><strong>Contrainte des 5 couleurs 🎨✨</strong><br>Limite-toi à cinq couleurs seulement et crée ton œuvre. [...]</li>
-        </ol>
-    </section>
-
-    <!-- Article 2 -->
-    <section id="creativite-sans-limites">
-        <h3>La Créativité Sans Limites</h3>
-        <p>Si tu es prêt à repousser encore plus loin les frontières de ta créativité, voici des exercices qui vont te faire sortir de ta zone de confort tout en éclatant de rire ! [...]</p>
-        <ol>
-            <li><strong>Tirage au sort : Thème + Couleur + Technique 🎰🎨🎲</strong><br>Choisis des thèmes, des couleurs et des techniques, puis tire-les au sort. [...]</li>
-            <li><strong>Cadavre exquis visuel 🧟‍♂️✂️</strong><br>Dessinons ensemble, mais de manière un peu étrange : chacun ajoute une partie à une œuvre sans savoir ce que les autres ont fait. [...]</li>
-            <li><strong>Roulette des matériaux 🎡🖌️</strong><br>Fais tourner ta roulette (virtuelle ou pas !) et laisse-toi surprendre par le matériau qui sort. [...]</li>
-            <li><strong>1 mot, 10 interprétations 🧠💬</strong><br>Choisis un mot au hasard et exprime-le de 10 façons différentes. [...]</li>
-            <li><strong>Peinture à l’aveugle guidée par le toucher 🎨👂</strong><br>Ferme les yeux, plonge tes doigts dans la peinture et laisse-les guider le pinceau. [...]</li>
-        </ol>
     </section>
 
     <!-- Contact -->
