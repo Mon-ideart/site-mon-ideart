@@ -1,31 +1,41 @@
 
 /* RESET */
-* { margin: 0; padding: 0; box-sizing: border-box; }
-
-html, body {
-  height: 100%;
-  font-family: Arial, sans-serif;
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
 
-/* FOND */
+html, body {
+  min-height: 100%;
+  font-family: 'Optima', 'Segoe UI', Arial, sans-serif; /* Police Optima */
+}
+
+/* ===== FOND DE PAGE EN CALQUE FIXE ===== */
 body {
+  color: #000;
+  background: transparent;
+}
+
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
   background-image: url("ChatGPT Image 24 nov. 2025, 13_34_41.png");
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
-  background-attachment: fixed; /* Fixe l'image */
-  color: #000;
+  z-index: -1;
 }
 
-/* NAVBAR */
+/* ===== NAVBAR (non fixe) ===== */
 .navbar {
   width: 100%;
-  background: rgba(255, 255, 255, 0.85);
+  background: #fff; /* Fond blanc solide */
   padding: 12px 20px;
-  top: 0;
-  left: 0;
+  position: relative; /* Enlève le fixed */
   border-bottom: 3px solid #000;
-  z-index: 1000; /* Toujours au-dessus */
+  z-index: 10;
 }
 
 .navbar ul {
@@ -42,9 +52,9 @@ body {
   font-size: 1.1rem;
 }
 
-/* CONTENT */
+/* ===== CONTENU PRINCIPAL ===== */
 .content {
-  padding-top: 100px; /* espace à cause de la navbar */
+  padding-top: 20px; /* Plus besoin de gros espace */
   width: 90%;
   max-width: 900px;
   margin: auto;
@@ -54,7 +64,7 @@ body {
   border: 3px solid #000;
 }
 
-/* SECTIONS */
+/* ===== SECTIONS ===== */
 .section {
   margin-bottom: 60px;
 }
@@ -65,7 +75,7 @@ body {
   margin-bottom: 15px;
 }
 
-/* Placeholder BD */
+/* ===== Placeholder BD ===== */
 .bd-placeholder {
   margin-top: 20px;
   padding: 30px;
@@ -75,7 +85,7 @@ body {
   font-weight: bold;
 }
 
-/* Image BD responsive */
+/* ===== Image BD responsive & centrée ===== */
 .bd-image {
   max-width: 100%;
   height: auto;
@@ -83,7 +93,7 @@ body {
   margin: 0 auto;
 }
 
-/* ARTICLES */
+/* ===== ARTICLES ===== */
 .articles-list article {
   margin-bottom: 25px;
   padding: 15px;
@@ -92,7 +102,7 @@ body {
   border-radius: 8px;
 }
 
-/* FORMULAIRE CONTACT */
+/* ===== FORMULAIRE CONTACT ===== */
 .contact-form {
   display: flex;
   flex-direction: column;
@@ -115,4 +125,9 @@ body {
   cursor: pointer;
   font-weight: bold;
   border-radius: 6px;
+}
+
+/* ===== Défilement fluide ===== */
+html {
+  scroll-behavior: smooth;
 }
