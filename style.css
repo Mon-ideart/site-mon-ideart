@@ -44,7 +44,7 @@ body {
 
 /* CONTENT */
 .content {
-  padding-top: 100px; /* espace à cause de la navbar */
+  padding-top: 150px; /* espace à cause de la navbar */
   width: 90%;
   max-width: 900px;
   margin: auto;
@@ -67,7 +67,7 @@ body {
 
 
 .bd-container {
-  margin-top: 30px;
+  margin-top: 20px;
   padding: 15px;
   background: #fff;
   border: 4px solid #000;
