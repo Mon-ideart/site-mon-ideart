@@ -1,3 +1,4 @@
+
 // Gestion du formulaire de contact
 document.getElementById('contact-form').addEventListener('submit', function(event) {
     event.preventDefault(); // Empêche l'envoi classique du formulaire
