@@ -1,16 +1,110 @@
+/* RESET */
+* { margin: 0; padding: 0; box-sizing: border-box; }
 
-// Gestion du formulaire de contact
-document.getElementById('contact-form').addEventListener('submit', function(event) {
-    event.preventDefault(); // Empêche l'envoi classique du formulaire
+html, body {
+  height: 100%;
+  font-family: Arial, sans-serif;
+}
 
-    const name = event.target.name.value;
-    const email = event.target.email.value;
-    const message = event.target.message.value;
+/* FOND */
+body {
+  background-image: url("ChatGPT Image 24 nov. 2025, 13_34_41.png");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-attachment: fixed; /* Fixe l'image */
+  color: #000;
+}
 
-    if(name && email && message) {
-        alert('Message envoyé ! Merci, ' + name);
-        event.target.reset(); // Réinitialiser le formulaire après envoi
-    } else {
-        alert('Tous les champs doivent être remplis.');
-    }
-});
+/* NAVBAR */
+.navbar {
+  width: 100%;
+  background: rgba(255, 255, 255, 0.85);
+  padding: 12px 20px;
+  position: fixed;
+  top: 0;
+  left: 0;
+  border-bottom: 3px solid #000;
+  z-index: 1000; /* Toujours au-dessus */
+}
+
+.navbar ul {
+  display: flex;
+  list-style: none;
+  gap: 30px;
+  justify-content: center;
+}
+
+.navbar a {
+  text-decoration: none;
+  font-weight: bold;
+  color: #000;
+  font-size: 1.1rem;
+}
+
+/* CONTENT */
+.content {
+  padding-top: 100px; /* espace à cause de la navbar */
+  width: 90%;
+  max-width: 900px;
+  margin: auto;
+  background: rgba(255, 255, 255, 0.85);
+  padding: 40px;
+  border-radius: 10px;
+  border: 3px solid #000;
+}
+
+/* SECTIONS */
+.section {
+  margin-bottom: 60px;
+}
+
+.section h1,
+.section h2,
+.section h3 {
+  margin-bottom: 15px;
+}
+
+/* Placeholder BD */
+.bd-placeholder {
+  margin-top: 20px;
+  padding: 30px;
+  text-align: center;
+  border: 2px dashed #000;
+  background: #fff;
+  font-weight: bold;
+}
+
+/* ARTICLES */
+.articles-list article {
+  margin-bottom: 25px;
+  padding: 15px;
+  border: 2px solid #000;
+  background: #fff;
+  border-radius: 8px;
+}
+
+/* FORMULAIRE CONTACT */
+.contact-form {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.contact-form input,
+.contact-form textarea {
+  padding: 10px;
+  border: 2px solid #000;
+  border-radius: 6px;
+  background: #fff;
+}
+
+.contact-form button {
+  padding: 12px;
+  background: #000;
+  color: #fff;
+  border: none;
+  cursor: pointer;
+  font-weight: bold;
+  border-radius: 6px;
+}
