@@ -47,7 +47,7 @@ body {
   padding-top: 100px; /* espace à cause de la navbar */
   width: 90%;
   max-width: 900px;
-  margin-top: 250px;
+  margin: auto;
   background: rgba(255, 255, 255, 0.85);
   padding: 40px;
   border-radius: 10px;
