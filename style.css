@@ -1,3 +1,4 @@
+
 /* RESET */
 * { margin: 0; padding: 0; box-sizing: border-box; }
 
@@ -12,6 +13,7 @@ body {
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
+  background-attachment: fixed; /* Fixe l'image */
   color: #000;
 }
 
@@ -24,6 +26,7 @@ body {
   top: 0;
   left: 0;
   border-bottom: 3px solid #000;
+  z-index: 1000; /* Toujours au-dessus */
 }
 
 .navbar ul {
@@ -71,6 +74,14 @@ body {
   border: 2px dashed #000;
   background: #fff;
   font-weight: bold;
+}
+
+/* Image BD responsive */
+.bd-image {
+  max-width: 100%;
+  height: auto;
+  display: block;
+  margin: 0 auto;
 }
 
 /* ARTICLES */
