@@ -4,39 +4,46 @@
 
 html, body {
   min-height: 100%;
-  font-family: 'Comic Sans MS', cursive, sans-serif;
+  font-family: Arial, sans-serif;
 }
 
-/* FOND FIXE */
+/* ===== FOND DE PAGE EN CALQUE FIXE =====
+   L'image couvre tout l'écran et reste visible pendant tout le scroll.
+   Remplace "ChatGPT Image 24 nov. 2025, 13_34_41.png" par le nom exact de ton fichier si besoin.
+*/
+body {
+  color: #000;
+  background: transparent; /* pas d'image directement sur body */
+}
+
 body::before {
   content: "";
   position: fixed;
-  inset: 0;
+  inset: 0; /* top/right/bottom/left: 0 */
   background-image: url("ChatGPT Image 24 nov. 2025, 13_34_41.png");
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
-  z-index: -1;
+  z-index: -1; /* derrière tout le contenu */
 }
 
-/* NAVBAR */
+/* NAVBAR (fixe) */
 .navbar {
   width: 100%;
-  background: #fff;
+  background: rgba(255, 255, 255, 0.85);
   padding: 12px 20px;
+  position: fixed;  /* header fixe */
+  top: 0;
+  left: 0;
   border-bottom: 3px solid #000;
+  z-index: 1000;    /* au-dessus du contenu */
 }
 
-.navbar nav {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-}
-
-.nav-links {
+.navbar ul {
   display: flex;
   list-style: none;
   gap: 30px;
+  justify-content: center;
 }
 
 .navbar a {
@@ -46,66 +53,47 @@ body::before {
   font-size: 1.1rem;
 }
 
-/* BURGER */
-.burger {
-  display: none;
-  font-size: 2rem;
-  background: none;
-  border: none;
-  cursor: pointer;
-}
-
-/* CONTENT */
+/* CONTENT : espace pour ne pas passer sous la navbar */
 .content {
-  padding: 20px;
+  padding-top: 100px; /* hauteur de la navbar */
   width: 90%;
   max-width: 900px;
   margin: auto;
   background: rgba(255, 255, 255, 0.85);
+  padding: 40px;
   border-radius: 10px;
   border: 3px solid #000;
 }
 
-/* BD dans une bulle */
-.bd-container {
+/* SECTIONS */
+.section { margin-bottom: 60px; }
+.section h1, .section h2, .section h3 { margin-bottom: 15px; }
+
+/* Placeholder BD */
+.bd-placeholder {
   margin-top: 20px;
-  padding: 15px;
+  padding: 30px;
+  text-align: center;
+  border: 2px dashed #000;
   background: #fff;
-  border: 4px solid #000;
-  border-radius: 50%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  width: 300px;
-  height: 300px;
-  margin-left: auto;
-  margin-right: auto;
-  overflow: hidden;
+  font-weight: bold;
 }
 
+/* Image BD responsive & centrée */
 .bd-image {
   max-width: 100%;
   height: auto;
+  display: block;
+  margin: 0 auto;
 }
 
-/* ARTICLES cliquables */
-.article-link {
-  text-decoration: none;
-  color: inherit;
-}
-
+/* ARTICLES */
 .articles-list article {
   margin-bottom: 25px;
   padding: 15px;
   border: 2px solid #000;
   background: #fff;
   border-radius: 8px;
-  transition: transform 0.3s ease, background 0.3s ease;
-}
-
-.articles-list article:hover {
-  transform: scale(1.05);
-  background: #f0f0f0;
 }
 
 /* FORMULAIRE CONTACT */
@@ -133,33 +121,5 @@ body::before {
   border-radius: 6px;
 }
 
-/* FOOTER */
-.footer {
-  text-align: center;
-  padding: 20px;
-  background: #fff;
-  border-top: 3px solid #000;
-  margin-top: 40px;
-}
-
-/* RESPONSIVE */
-@media (max-width: 768px) {
-  .nav-links {
-    display: none;
-    flex-direction: column;
-    gap: 15px;
-    background: #fff;
-    position: absolute;
-    top: 60px;
-    right: 20px;
-    padding: 15px;
-    border: 2px solid #000;
-    border-radius: 8px;
-  }
-  .nav-links.active {
-    display: flex;
-  }
-  .burger {
-    display: block;
-  }
-}
+/* Optionnel : défilement fluide */
+html { scroll-behavior: smooth; }
