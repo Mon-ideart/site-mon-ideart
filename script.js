@@ -26,10 +26,9 @@ if (form) {
   });
 }
 
-// Bouton retour (page article)
-const backBtn = document.getElementById('back-btn');
-if (backBtn) {
-  backBtn.addEventListener('click', () => {
-    window.location.href = 'index.html';
+
+  document.getElementById('back-btn').addEventListener('click', function() {
+    window.location.href = '/';
   });
-}
+
+
