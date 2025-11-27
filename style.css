@@ -22,6 +22,7 @@ body {
   background: rgba(255, 255, 255);
   padding: 12px 20px;
   margin-bottom: 20px;
+  position: sticky;
   
   top: 0;
   left: 0;
@@ -49,7 +50,6 @@ body {
   width: 90%;
   max-width: 900px;
   margin: auto;
-  margin-top: 250px;
   background: rgba(255, 255, 255, 0.85);
   padding: 40px;
   border-radius: 10px;
@@ -74,6 +74,7 @@ body {
   background: #fff;
   border: 4px solid #000;
   border-radius: 50%; /* effet bulle */
+  position: relative; /* pour la queue de bulle */
   display: flex;
   justify-content: center;
   align-items: center;
@@ -83,10 +84,38 @@ body {
   margin-right: auto;
   overflow: hidden;
 }
+/* 
+.bd-container::after {
+  content: "";
+  position: absolute;
+  bottom: -20px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 0;
+  height: 0;
+  border-top: 24px solid #000;
+  border-left: 18px solid transparent;
+  border-right: 18px solid transparent;
+}
+
+.bd-container::before {
+  content: "";
+  position: absolute;
+  bottom: -14px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 0;
+  height: 0;
+  border-top: 18px solid #fff;
+  border-left: 13px solid transparent;
+  border-right: 13px solid transparent;
+  z-index: 1;
+} */
 
 .bd-image {
-  max-width: 100%;
-  height: auto;
+  width: 100%;
+  height: 100%;
+  object-fit: fill;
 }
 
 
