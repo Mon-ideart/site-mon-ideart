@@ -87,7 +87,6 @@ body {
 .bd-image {
   width: 100%;
   height: auto;
-  object-fit: contain;
 }
 
 /* ARTICLES LIST */
@@ -208,6 +207,5 @@ body {
   }
   .bd-container {
     width: 100%;
-    max-width: 100%;
   }
 }
