@@ -176,35 +176,20 @@ body {
   margin-bottom: 10px;
 }
 
-/* Bouton retour */
-#back-btn {
-  display: block;
-  margin: 30px auto 0;
-  padding: 12px 20px;
-  background: #004080;
-  color: #fff;
-  border: none;
-  cursor: pointer;
-  font-weight: bold;
-  border-radius: 6px;
-}
-
-#back-btn:hover {
-  background: #0066cc;
-  transition: background 0.3s ease;
-}
-
-/* Conteneur boutons BD orange */
+/* Conteneur boutons BD orange - bulle fixée en bas à gauche */
 .buttons-container {
+  position: fixed;
+  bottom: 20px;
+  left: 20px;
   display: flex;
-  justify-content: center;
-  gap: 15px;
-  margin-top: 30px;
-  padding: 20px;
+  flex-direction: column;
+  gap: 10px;
+  padding: 15px;
   background: #ff6600;
   border: 4px solid #000;
-  border-radius: 15px;
+  border-radius: 20px;
   box-shadow: 4px 4px 0 #000;
+  z-index: 999;
 }
 
 .buttons-container button {
@@ -236,5 +221,15 @@ body {
   }
   .bd-container {
     width: 100%;
+  }
+  .buttons-container {
+    bottom: 10px;
+    left: 10px;
+    padding: 10px;
+    border-radius: 15px;
+  }
+  .buttons-container button {
+    padding: 10px 15px;
+    font-size: 0.9rem;
   }
 }
