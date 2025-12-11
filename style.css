@@ -136,12 +136,11 @@ body {
 
 /* ARTICLE PAGE */
 .article-content {
-  padding-top: 100px;
   width: 90%;
   max-width: 900px;
-  margin: auto;
-  background: rgba(255, 255, 255, 0.9);
+  margin: 30px auto 0 auto;
   padding: 40px;
+  background: rgba(255, 255, 255, 0.9);
   border-radius: 10px;
   border: 3px solid #000;
 }
@@ -193,6 +192,36 @@ body {
 #back-btn:hover {
   background: #0066cc;
   transition: background 0.3s ease;
+}
+
+/* Conteneur boutons BD orange */
+.buttons-container {
+  display: flex;
+  justify-content: center;
+  gap: 15px;
+  margin-top: 30px;
+  padding: 20px;
+  background: #ff6600;
+  border: 4px solid #000;
+  border-radius: 15px;
+  box-shadow: 4px 4px 0 #000;
+}
+
+.buttons-container button {
+  padding: 12px 20px;
+  background: #fff;
+  color: #000;
+  border: 3px solid #000;
+  cursor: pointer;
+  font-weight: bold;
+  border-radius: 6px;
+  font-size: 1rem;
+}
+
+.buttons-container button:hover {
+  background: #004080;
+  color: #fff;
+  transition: all 0.3s ease;
 }
 
 /* RESPONSIVE */

@@ -12,8 +12,8 @@
  <header class="navbar">
     <nav>
       <ul>
-        <li><a href="#home">Home</a></li>
-        <li><a href="#contact">Contact</a></li>
+        <li><a href="index.html#home">Home</a></li>
+        <li><a href="index.html#contact">Contact</a></li>
       </ul>
     </nav>
   </header>
@@ -24,8 +24,8 @@
       <h1>Libère ton Créatif Intérieur</h1>
 
       <!-- Zone image -->
-      <div class>
-       <img src="laetitiadupont-libere-ta-creativite-72178.jpg" >
+      <div class="article-image">
+       <img src="laetitiadupont-libere-ta-creativite-72178.jpg" alt="Libère ton Créatif Intérieur">
       </div>
 
       <!-- Texte de l'article -->
@@ -47,20 +47,21 @@
         </ol>
       </div>
 
-      <!-- Bouton retour -->
-      <button id="back-btn">⬅ Retour à l'accueil</button>
+      <!-- Boutons navigation -->
+      <div class="buttons-container">
+        <button id="back-btn">⬅ Retour à l'accueil</button>
+        <button id="next-article-btn">➡ Article suivant</button>
+      </div>
     </section>
   </main>
-  <!-- Bouton article suivant -->
-<button id="next-article-btn">➡ Article suivant</button>
 
 <script>
   document.getElementById('next-article-btn').addEventListener('click', function() {
     window.location.href = 'article2.html';
   });
+  document.getElementById('back-btn').addEventListener('click', function() {
+    window.location.href = 'index.html';
+  });
 </script>
-
-
-  <script>article.js</script>
 </body>
 </html>
