@@ -8,7 +8,7 @@ html, body {
 
 /* FOND COMMUN */
 body {
-  background-image: url;
+  background-image: url("Fond.png");
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
@@ -28,7 +28,8 @@ body {
   z-index: 1000;
   display: flex;
   align-items: center;
-  justify-content: space-between;
+  justify-content: center;
+  gap: 50px;
 }
 
 .navbar-logo {
@@ -37,7 +38,7 @@ body {
 }
 
 .navbar-logo img {
-  height: 70px;
+  height: 90px;
   width: auto;
   transition: transform 0.3s ease;
 }
