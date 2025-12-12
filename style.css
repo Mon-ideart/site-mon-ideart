@@ -199,11 +199,8 @@ body {
   margin-bottom: 10px;
 }
 
-/* Conteneur boutons BD orange - bulle fixée en bas à gauche */
+/* Conteneur boutons BD orange - en bas de page */
 .buttons-container {
-  position: fixed;
-  bottom: 20px;
-  left: 20px;
   display: flex;
   flex-direction: column;
   gap: 10px;
@@ -212,7 +209,8 @@ body {
   border: 4px solid #000;
   border-radius: 20px;
   box-shadow: 4px 4px 0 #000;
-  z-index: 999;
+  margin-top: 30px;
+  width: fit-content;
 }
 
 .buttons-container button {
@@ -230,6 +228,21 @@ body {
   background: #004080;
   color: #fff;
   transition: all 0.3s ease;
+}
+
+/* Image en haut de page article */
+.top-article-image {
+  width: 90%;
+  max-width: 900px;
+  margin: 20px auto;
+  display: flex;
+  justify-content: center;
+}
+
+.top-article-image img {
+  max-width: 100%;
+  border-radius: 10px;
+  border: 3px solid #000;
 }
 
 /* RESPONSIVE */
@@ -253,8 +266,6 @@ body {
     width: 100%;
   }
   .buttons-container {
-    bottom: 10px;
-    left: 10px;
     padding: 10px;
     border-radius: 15px;
   }
