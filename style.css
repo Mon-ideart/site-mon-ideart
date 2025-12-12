@@ -47,6 +47,24 @@ body {
   transition: color 0.3s ease;
 }
 
+/* LOGO SECTION */
+.logo-section {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 30px 20px;
+  background: rgba(255, 255, 255, 0.95);
+  border-bottom: 3px solid #000;
+}
+
+.logo-image {
+  max-width: 500px;
+  width: 90%;
+  height: auto;
+  display: block;
+}
+
 /* CONTENU ACCUEIL */
 .content {
   padding-top: 100px;
@@ -214,6 +232,13 @@ body {
   .navbar ul {
     flex-direction: column;
     gap: 15px;
+  }
+  .logo-section {
+    padding: 20px 10px;
+  }
+  .logo-image {
+    max-width: 300px;
+    width: 85%;
   }
   .content, .article-content {
     width: 95%;
