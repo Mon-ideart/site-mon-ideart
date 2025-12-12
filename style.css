@@ -8,7 +8,7 @@ html, body {
 
 /* FOND COMMUN */
 body {
-  background-image: url;
+  background-image: url("Fond.png");
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
