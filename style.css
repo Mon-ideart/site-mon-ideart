@@ -8,7 +8,7 @@ html, body {
 
 /* FOND COMMUN */
 body {
-  background-image: src("Fond.png");
+  background-image: url("Fond.png");
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
@@ -228,6 +228,29 @@ body {
 }
 
 .buttons-container button:hover {
+  background: #004080;
+  color: #fff;
+  transition: all 0.3s ease;
+}
+
+.buttons-container a {
+  text-decoration: none;
+}
+
+.buttons-container .button-link {
+  display: block;
+  padding: 12px 20px;
+  background: #fff;
+  color: #000;
+  border: 3px solid #000;
+  cursor: pointer;
+  font-weight: bold;
+  border-radius: 6px;
+  font-size: 1rem;
+  text-align: center;
+}
+
+.buttons-container .button-link:hover {
   background: #004080;
   color: #fff;
   transition: all 0.3s ease;
