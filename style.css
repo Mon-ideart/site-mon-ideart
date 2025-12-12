@@ -237,6 +237,25 @@ body {
   text-decoration: none;
 }
 
+.buttons-container .button-link {
+  display: block;
+  padding: 12px 20px;
+  background: #fff;
+  color: #000;
+  border: 3px solid #000;
+  cursor: pointer;
+  font-weight: bold;
+  border-radius: 6px;
+  font-size: 1rem;
+  text-align: center;
+}
+
+.buttons-container .button-link:hover {
+  background: #004080;
+  color: #fff;
+  transition: all 0.3s ease;
+}
+
 /* Image en haut de page article */
 .top-article-image {
   width: 90%;
