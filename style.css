@@ -8,7 +8,7 @@ html, body {
 
 /* FOND COMMUN */
 body {
-  background-image: url("ChatGPT Image 24 nov. 2025, 13_34_41.png");
+  background-image: url("Fond.png");
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
@@ -20,7 +20,7 @@ body {
 .navbar {
   width: 100%;
   background: rgba(255, 255, 255, 0.95);
-  padding: 12px 20px;
+  padding: 15px 30px;
   position: sticky;
   top: 0;
   left: 0;
@@ -28,18 +28,16 @@ body {
   z-index: 1000;
   display: flex;
   align-items: center;
-  justify-content: center;
+  justify-content: space-between;
 }
 
 .navbar-logo {
   display: flex;
   align-items: center;
-  position: absolute;
-  left: 20px;
 }
 
 .navbar-logo img {
-  height: 50px;
+  height: 70px;
   width: auto;
   transition: transform 0.3s ease;
 }
@@ -52,7 +50,7 @@ body {
   display: flex;
   list-style: none;
   gap: 30px;
-  justify-content: center;
+  justify-content: flex-end;
 }
 
 .navbar a {
@@ -119,6 +117,10 @@ body {
   border: 2px solid #000;
   background: #fff;
   border-radius: 8px;
+}
+
+.articles-list article h3 a {
+  color: #ff6600;
 }
 
 .articles-list article:hover {
